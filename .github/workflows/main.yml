@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Git Repository
         uses: actions/checkout@v3
       - name: Build Jar
-        run: mvn clean build
+        run: clean build
       - name: Upload jar
         uses: actions/upload-artifact@v2
         with:
