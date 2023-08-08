@@ -13,9 +13,6 @@ public class MainTab implements TabCompleter {
 
         List<String> list = new ArrayList<>();
 
-        if (args.length == 0){
-
-        }
         if (args.length == 1){
             //String[] flist = {"reload","mute","unmute","help"};
             list.add("reload");

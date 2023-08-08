@@ -24,25 +24,28 @@ public class ChatListener implements Listener {
             event.setCancelled(true);
             String format = ChatColor.AQUA + main.getConfig().getString("format") +ChatColor.BLUE+">>>"+ ChatColor.GRAY + getPlayerMessage;
             String setPlayerMessage = ReplaceUtil.ColorReplace(format);
-
+            /*
             if (player.isOp()){
                 //String setPlayerMessage = ReplaceUtil.ColorReplace(ChatColor.AQUA + main.getConfig().getString("format") +ChatColor.BLUE+">>>"+ ChatColor.GRAY + getPlayerMessage);
                 String chatFormat = PlaceholderAPI.setPlaceholders(player, ChatColor.RED+"[管理员]"+setPlayerMessage);
                 //Bukkit.broadcastMessage((String) opformat);
             }
+            */
             String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
-            Bukkit.broadcastMessage((String) chatFormat);
+            Bukkit.broadcastMessage(chatFormat);
         }else {
             //Player player = event.getPlayer();
             String getPlayerMessage = event.getMessage();
             String setPlayerMessage = ReplaceUtil.ColorReplace(ChatColor.AQUA + main.getConfig().getString("format") +ChatColor.BLUE+">>>"+ ChatColor.GRAY + getPlayerMessage);
-            Object format = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
+            String format = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
+            /*
             if (player.isOp()){
                 String setOPMessage = ReplaceUtil.ColorReplace(ChatColor.RED+"[管理员]"+ChatColor.AQUA + main.getConfig().getString("format") +ChatColor.BLUE+">>>"+ ChatColor.GRAY + getPlayerMessage);
                 Object opformat = PlaceholderAPI.setPlaceholders(player, setOPMessage);
-                Bukkit.broadcastMessage((String) opformat);
+                Bukkit.broadcastMessage( opformat);
             }
-            Bukkit.broadcastMessage((String) format);
+            */
+            Bukkit.broadcastMessage(format);
         }
 
         main.getConfig().getStringList("mutelist").forEach(ml->{

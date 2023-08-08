@@ -5,7 +5,6 @@ import me.xiaoxing365.gypchat.Cmds.MainTab;
 import me.xiaoxing365.gypchat.listeners.ChatListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import net.md_5.bungee.api.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class GypChat extends JavaPlugin {
