@@ -1,0 +1,10 @@
+# 聊天格式
+format: "[%player_name%]"
+
+# 是否开启聊天颜色
+chatcolor: true
+
+# 禁言列表
+mutelist:
+  - "123"
+  - "qwertyui"

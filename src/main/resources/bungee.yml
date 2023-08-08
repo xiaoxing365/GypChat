@@ -1,0 +1,5 @@
+name: GypChat
+version: '${project.version}'
+main: me.xiaoxing365.gypchat.GypChat
+depend: [PlaceholderAPI]
+authors: [xiaoxing365]

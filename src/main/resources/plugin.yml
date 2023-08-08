@@ -1,0 +1,24 @@
+name: GypChat
+version: '${project.version}'
+main: me.xiaoxing365.gypchat.GypChat
+depend: [PlaceholderAPI]
+authors: [xiaoxing365]
+commands:
+  gypchat:
+    aliases:
+      - "gc"
+      - "gy"
+      - "gyp"
+    description: MainCommand
+permissions:
+  gypchat.*:
+    children:
+      GypChat.reload:
+        description: reload
+        default: op
+      GypChat.mute:
+        default: op
+        description: mute players
+      GypChat.unmute:
+        description: unmute players
+        default: op
