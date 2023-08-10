@@ -21,6 +21,7 @@ public class MainCmd implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW+"/gc help         显示帮助页面(也就是这个页面)");
             sender.sendMessage(ChatColor.YELLOW+"/gc mute         禁言其他玩家(只有管理员可执行)");
             sender.sendMessage(ChatColor.YELLOW+"/gc reload         重载插件(只有管理员可执行)");
+            sender.sendMessage(ChatColor.YELLOW + "---------------------------");
             return true;
         }
         List<String> mutelist = DefConfig.getMuteList();
@@ -63,6 +64,7 @@ public class MainCmd implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW + "/gc help         显示帮助页面(也就是这个页面)");
             sender.sendMessage(ChatColor.YELLOW + "/gc mute         禁言其他玩家(只有管理员可执行)");
             sender.sendMessage(ChatColor.YELLOW + "/gc reload         重载插件(只有管理员可执行)");
+            sender.sendMessage(ChatColor.YELLOW + "---------------------------");
         }
         return false;
     }

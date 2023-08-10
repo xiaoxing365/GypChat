@@ -25,7 +25,7 @@ public class ChatListener implements Listener {
             String format = ChatColor.AQUA + DefConfig.getFormat() +ChatColor.BLUE+" >>>"+ ChatColor.GRAY + getPlayerMessage;
 
             if (player.isOp()){
-                format = PlaceholderAPI.setPlaceholders(player, ChatColor.RED+"[管理员]"+format);
+                format =  ChatColor.RED+"[管理员]"+format;
                 //Bukkit.broadcastMessage((String) opformat);
             }
             String setPlayerMessage = ReplaceUtil.ColorReplace(format);
@@ -38,7 +38,7 @@ public class ChatListener implements Listener {
             String format = DefConfig.getFormat() +" >>>"+ getPlayerMessage;
 
             if (player.isOp()){
-                format = PlaceholderAPI.setPlaceholders(player, ChatColor.RED+"[管理员]"+format);
+                format = ChatColor.RED+"[管理员]" +format;
                 //Bukkit.broadcastMessage((String) opformat);
             }
             String setPlayerMessage = ReplaceUtil.ColorReplace(format);
