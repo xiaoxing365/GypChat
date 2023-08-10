@@ -15,7 +15,7 @@ import org.bukkit.plugin.Plugin;
 
 public class ChatListener implements Listener {
 
-    Plugin main = GypChat.getProvidingPlugin(GypChat.class);
+    //Plugin main = GypChat.getProvidingPlugin(GypChat.class);
 
 
     @EventHandler(ignoreCancelled = true,priority = EventPriority.HIGHEST)
@@ -25,46 +25,27 @@ public class ChatListener implements Listener {
             String getPlayerMessage = event.getMessage();
             event.setCancelled(true);
             String format = ChatColor.AQUA + DefConfig.getFormat() +ChatColor.BLUE+" >>>"+ ChatColor.GRAY + getPlayerMessage;
-            String setPlayerMessage = ReplaceUtil.ColorReplace(format);
-            /*
+
             if (player.isOp()){
-                //String setPlayerMessage = ReplaceUtil.ColorReplace(ChatColor.AQUA + main.getConfig().getString("format") +ChatColor.BLUE+">>>"+ ChatColor.GRAY + getPlayerMessage);
-                String chatFormat = PlaceholderAPI.setPlaceholders(player, ChatColor.RED+"[管理员]"+setPlayerMessage);
+                format = PlaceholderAPI.setPlaceholders(player, ChatColor.RED+"[管理员]"+format);
                 //Bukkit.broadcastMessage((String) opformat);
             }
-            */
+            String setPlayerMessage = ReplaceUtil.ColorReplace(format);
             String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
             Bukkit.broadcastMessage(chatFormat);
         }else if (!DefConfig.isChatColor()){
             //Player player = event.getPlayer();
             String getPlayerMessage = event.getMessage();
-            String setPlayerMessage = ReplaceUtil.ColorReplace(DefConfig.getFormat() + ">>>"+ getPlayerMessage);
-            String format = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
-            /*
+            event.setCancelled(true);
+            String format = DefConfig.getFormat() +" >>>"+ getPlayerMessage;
+
             if (player.isOp()){
-                String setOPMessage = ReplaceUtil.ColorReplace(ChatColor.RED+"[管理员]"+ChatColor.AQUA + main.getConfig().getString("format") +ChatColor.BLUE+">>>"+ ChatColor.GRAY + getPlayerMessage);
-                Object opformat = PlaceholderAPI.setPlaceholders(player, setOPMessage);
-                Bukkit.broadcastMessage( opformat);
+                format = PlaceholderAPI.setPlaceholders(player, ChatColor.RED+"[管理员]"+format);
+                //Bukkit.broadcastMessage((String) opformat);
             }
-            */
-            Bukkit.broadcastMessage(format);
-        }
-
-        DefConfig.getMuteList().forEach(ml->{
-            Player mutedPlayer = event.getPlayer();
-            if (ml.equals(mutedPlayer)){
-                event.setCancelled(true);
-                mutedPlayer.sendMessage(ChatColor.RED+"你已被禁言，请联系管理员解除！");
-            }
-        });
-
-        if (DefConfig.isReplaceEnable()) {
-            String msg = event.getMessage();
-            DefConfig.getreplaceWords().forEach(words -> {
-                if (msg.contains(words)) {
-                    event.setMessage(DefConfig.getReplaceTo());
-                }
-            });
+            String setPlayerMessage = ReplaceUtil.ColorReplace(format);
+            String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
+            Bukkit.broadcastMessage(chatFormat);
         }
 
     }

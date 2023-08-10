@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MainCmd implements CommandExecutor {
 
-    Plugin main = GypChat.getProvidingPlugin(GypChat.class);
+    //Plugin main = GypChat.getProvidingPlugin(GypChat.class);
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -29,7 +29,7 @@ public class MainCmd implements CommandExecutor {
         if (args[0].equalsIgnoreCase("reload")) {
             if (sender.hasPermission("GypChat.reload") & sender.isOp()) {
                 try {
-                    main.reloadConfig();
+                    GypChat.instance.reloadConfig();
                     Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA + "插件已重载！");
                     sender.sendMessage(ChatColor.AQUA + "插件已重载！");
                 } catch (Exception e) {
