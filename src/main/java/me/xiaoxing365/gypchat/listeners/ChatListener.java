@@ -1,7 +1,6 @@
 package me.xiaoxing365.gypchat.listeners;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.xiaoxing365.gypchat.GypChat;
 import me.xiaoxing365.gypchat.config.DefConfig;
 import me.xiaoxing365.gypchat.utils.ReplaceUtil;
 import org.bukkit.Bukkit;
@@ -11,7 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.plugin.Plugin;
 
 public class ChatListener implements Listener {
 
