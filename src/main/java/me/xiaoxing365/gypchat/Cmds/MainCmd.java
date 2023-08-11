@@ -24,7 +24,7 @@ public class MainCmd implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW + "---------------------------");
             return true;
         }
-        List<String> mutelist = DefConfig.getMuteList();
+        //List<String> mutelist = DefConfig.getMuteList();
         if (args[0].equalsIgnoreCase("reload")) {
             if (sender.hasPermission("GypChat.reload") & sender.isOp()) {
                 try {
@@ -42,7 +42,8 @@ public class MainCmd implements CommandExecutor {
         if (args[0].equalsIgnoreCase("mute")) {
             if (sender.hasPermission("GypChat.mute") & sender.isOp()) {
                 String player = args[1].toLowerCase();
-                mutelist.add(player);
+                //mutelist.add(player);
+                GypChat.instance.getConfig().getStringList("muteList").add(player);
                 DefConfig.saveConfig();
                 sender.sendMessage(ChatColor.YELLOW + "你已禁言" + player);
             } else {
@@ -52,7 +53,8 @@ public class MainCmd implements CommandExecutor {
         if (args[0].equalsIgnoreCase("unmute")) {
             if (sender.hasPermission("GypChat.unmute") & sender.isOp()) {
                 String player = args[1];
-                mutelist.remove(player);
+                //mutelist.remove(player);
+                GypChat.instance.getConfig().getStringList("muteList").remove(player);
                 DefConfig.saveConfig();
                 sender.sendMessage(ChatColor.AQUA + "你已解除" + player + "的禁言！");
             } else {

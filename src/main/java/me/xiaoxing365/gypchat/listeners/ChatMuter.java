@@ -1,5 +1,6 @@
 package me.xiaoxing365.gypchat.listeners;
 
+import me.xiaoxing365.gypchat.GypChat;
 import me.xiaoxing365.gypchat.config.DefConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -11,7 +12,7 @@ public class ChatMuter implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event){
         String player = event.getPlayer().getDisplayName();
-        DefConfig.getMuteList().forEach(ml->{
+        GypChat.instance.getConfig().getStringList("muteList").forEach(ml->{
             if (ml.equals(player)){
                 event.setCancelled(true);
                 Player pmsg = event.getPlayer();

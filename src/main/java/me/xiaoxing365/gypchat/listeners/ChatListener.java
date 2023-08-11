@@ -16,13 +16,13 @@ public class ChatListener implements Listener {
     //Plugin main = GypChat.getProvidingPlugin(GypChat.class);
 
 
-    @EventHandler(ignoreCancelled = true,priority = EventPriority.HIGHEST)
+    @EventHandler//(ignoreCancelled = true,priority = EventPriority.HIGHEST)
     public void onChat(AsyncPlayerChatEvent event){
         Player player = event.getPlayer();
         if (DefConfig.isChatColor()) {
             String getPlayerMessage = event.getMessage();
             event.setCancelled(true);
-            String format = ChatColor.AQUA + DefConfig.getFormat() +ChatColor.BLUE+" >>>"+ ChatColor.GRAY + getPlayerMessage;
+            String format = ChatColor.AQUA + DefConfig.getFormat() +ChatColor.BLUE+" >>> "+ ChatColor.GRAY + getPlayerMessage;
 
             if (player.isOp()){
                 format =  ChatColor.RED+"[管理员]"+format;
@@ -35,7 +35,7 @@ public class ChatListener implements Listener {
             //Player player = event.getPlayer();
             String getPlayerMessage = event.getMessage();
             event.setCancelled(true);
-            String format = DefConfig.getFormat() +" >>>"+ getPlayerMessage;
+            String format = DefConfig.getFormat() +" >>> "+ getPlayerMessage;
 
             if (player.isOp()){
                 format = ChatColor.RED+"[管理员]" +format;
