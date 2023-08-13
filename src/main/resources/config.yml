@@ -6,7 +6,8 @@ chatColor: true
 
 #屏蔽脏话
 replaceEnable: true
-#现已知的脏话列表，会转化为replaceTo
+replaceTo: "*"
+#现已知的脏话列表
 replaceWords:
   - "nm"
   - "sb"

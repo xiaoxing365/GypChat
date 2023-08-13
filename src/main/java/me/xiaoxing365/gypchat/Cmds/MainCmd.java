@@ -1,7 +1,6 @@
 package me.xiaoxing365.gypchat.Cmds;
 
 import me.xiaoxing365.gypchat.GypChat;
-import me.xiaoxing365.gypchat.config.DefConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -43,8 +42,8 @@ public class MainCmd implements CommandExecutor {
             if (sender.hasPermission("GypChat.mute") & sender.isOp()) {
                 String player = args[1].toLowerCase();
                 //mutelist.add(player);
-                GypChat.instance.getConfig().getStringList("muteList").add(player);
-                DefConfig.saveConfig();
+                GypChat.instance.getConfig().addDefault("muteList",player);
+                GypChat.instance.saveConfig();
                 sender.sendMessage(ChatColor.YELLOW + "你已禁言" + player);
             } else {
                 sender.sendMessage(ChatColor.RED + "你没有权限运行此命令！");
@@ -55,7 +54,7 @@ public class MainCmd implements CommandExecutor {
                 String player = args[1];
                 //mutelist.remove(player);
                 GypChat.instance.getConfig().getStringList("muteList").remove(player);
-                DefConfig.saveConfig();
+                GypChat.instance.saveConfig();
                 sender.sendMessage(ChatColor.AQUA + "你已解除" + player + "的禁言！");
             } else {
                 sender.sendMessage(ChatColor.RED + "你没有权限运行此命令！");
