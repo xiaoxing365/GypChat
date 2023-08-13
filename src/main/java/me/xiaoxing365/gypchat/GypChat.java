@@ -10,11 +10,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class GypChat extends JavaPlugin {
 
     public static GypChat instance;
-
+    Thread thread = new Thread();
     @Override
     public void onEnable() {
         instance = this;
         // Plugin startup logic
+        thread.start();
         Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA+"GYPChat已启动！");
         Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA+"末影阁系列插件");
         Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA+"作者:xiaoxing365");
@@ -36,6 +37,7 @@ public final class GypChat extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        thread.stop();
         Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE+"插件已卸载，感谢使用！");
     }
 }
