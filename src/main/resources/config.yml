@@ -4,15 +4,6 @@ Format: "[%player_name%]"
 # 是否开启聊天颜色
 chatColor: true
 
-#屏蔽脏话
-replaceEnable: true
-replaceTo: "*"
-#现已知的脏话列表
-replaceWords:
-  - "nm"
-  - "sb"
-  - "我操你大爷"
-
 # 禁言列表
 muteList:
   - "123"

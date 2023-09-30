@@ -1,6 +1,7 @@
 package me.xiaoxing365.gypchat.listeners;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import me.xiaoxing365.gypchat.Cmds.MainCmd;
 import me.xiaoxing365.gypchat.GypChat;
 import me.xiaoxing365.gypchat.utils.ReplaceUtil;
 import org.bukkit.Bukkit;
@@ -16,15 +17,30 @@ import java.util.Set;
 import java.util.UUID;
 
 public class ChatListener implements Listener {
-    Set<UUID> mutedPlayers = new HashSet<>();
+
     //Plugin main = GypChat.getProvidingPlugin(GypChat.class);
-
-
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
+        String playername = event.getPlayer().getDisplayName();
+        Player player = event.getPlayer();
+        for (String ml : GypChat.instance.getConfig().getStringList("muteList")) {
+            if (ml.contains(playername)) {
+                event.setCancelled(true);
+            }
+        }
+        // 检查是否被禁言
+        if (MainCmd.mutedPlayers.contains(player.getUniqueId())) {
+            player.sendMessage(ChatColor.RED+"你被禁止发言!");
+        }
+    }
     @EventHandler//(ignoreCancelled = true,priority = EventPriority.HIGHEST)
     public void onChat(AsyncPlayerChatEvent event){
+
         Player player = event.getPlayer();
-        String name = event.getPlayer().getDisplayName();
         if (GypChat.instance.getConfig().getBoolean("chatColor")) {
+            /*
+            启动了颜色
+             */
             if (GypChat.instance.getConfig().getBoolean("replaceEnable")) {
                 String getPlayerMessage = event.getMessage();
                 event.setCancelled(true);
@@ -35,60 +51,29 @@ public class ChatListener implements Listener {
                     //Bukkit.broadcastMessage((String) opformat);
                 }
                 String setPlayerMessage = ReplaceUtil.ColorReplace(format);
-                //Player player = event.getPlayer();
-                //List<String> list = DefConfig.getreplaceWords();
-                for (String words : GypChat.instance.getConfig().getStringList("replaceWords")) {
-                    if (getPlayerMessage.contains(words)) {
-                        //event.setCancelled(true);
-                        player.sendMessage(ChatColor.YELLOW + "您的话语中含有违禁词语， ");
-                        player.sendMessage(ChatColor.YELLOW + "请合理使用词汇，保持干净的聊天环境！");
-
-                        String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
-                        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "玩家" + name + "说出了敏感词汇，内容：" + getPlayerMessage);
-                        Bukkit.broadcastMessage(chatFormat);
-                    }
-                }
+                String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
+                Bukkit.broadcastMessage(chatFormat);
             }
         }else if (!GypChat.instance.getConfig().getBoolean("chatColor")){
+            /*
+            没有启动颜色
+             */
             //Player player = event.getPlayer();
             String getPlayerMessage = event.getMessage();
             event.setCancelled(true);
             String format = GypChat.instance.getConfig().getString("Format") +" >>> "+ getPlayerMessage;
-
             if (player.isOp()){
                 format = ChatColor.RED+"[管理员]" +format;
                 //Bukkit.broadcastMessage((String) opformat);
             }
             String setPlayerMessage = ReplaceUtil.ColorReplace(format);
-
             if (GypChat.instance.getConfig().getBoolean("replaceEnable")) {
-                //Player player = event.getPlayer();
-                //List<String> list = DefConfig.getreplaceWords();
-                for (String words : GypChat.instance.getConfig().getStringList("replaceWords")) {
-                    if (getPlayerMessage.contains(words)) {
-                        //event.setCancelled(true);
-                        player.sendMessage(ChatColor.YELLOW + "您的话语中含有违禁词语， ");
-                        player.sendMessage(ChatColor.YELLOW + "请合理使用词汇，保持干净的聊天环境！");
-                        getPlayerMessage.replaceAll(words,"*");
-                        String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
-                        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "玩家" + name + "说出了敏感词汇，内容：" + getPlayerMessage);
-                        Bukkit.broadcastMessage(chatFormat);
-                    }
-                }
+                String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
+                 Bukkit.broadcastMessage(chatFormat);
             }
 
         }
-        /**
-         * muter
-         */
-        String playername = event.getPlayer().getDisplayName();
-        for (String ml : GypChat.instance.getConfig().getStringList("muteList")) {
-            if (ml.contains(playername)) {
-                event.setCancelled(true);
-                Player pmsg = event.getPlayer();
-                pmsg.sendMessage(ChatColor.RED + "你已被禁言，请联系管理员解除！");
-            }
-        }
+
 
     }
 }
