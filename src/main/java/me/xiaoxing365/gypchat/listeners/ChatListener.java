@@ -3,7 +3,9 @@ package me.xiaoxing365.gypchat.listeners;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.xiaoxing365.gypchat.Cmds.MainCmd;
 import me.xiaoxing365.gypchat.GypChat;
+//import me.xiaoxing365.gypchat.configs.Config;
 import me.xiaoxing365.gypchat.utils.ReplaceUtil;
+import net.Zrips.CMILib.Messages.CMIMessages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -26,10 +28,11 @@ public class ChatListener implements Listener {
         for (String ml : GypChat.instance.getConfig().getStringList("muteList")) {
             if (ml.contains(playername)) {
                 event.setCancelled(true);
+
             }
         }
         // 检查是否被禁言
-        if (MainCmd.mutedPlayers.contains(player.getUniqueId())) {
+        if (GypChat.instance.getConfig().getStringList("muteList").contains(playername)) {
             player.sendMessage(ChatColor.RED+"你被禁止发言!");
         }
     }
@@ -41,36 +44,28 @@ public class ChatListener implements Listener {
             /*
             启动了颜色
              */
-            if (GypChat.instance.getConfig().getBoolean("replaceEnable")) {
-                String getPlayerMessage = event.getMessage();
-                event.setCancelled(true);
-                String format = ChatColor.AQUA + GypChat.instance.getConfig().getString("Format") +ChatColor.BLUE+" >>> "+ ChatColor.GRAY + getPlayerMessage;
-
-                if (player.isOp()){
-                    format =  ChatColor.RED+"[管理员]"+format;
-                    //Bukkit.broadcastMessage((String) opformat);
-                }
-                String setPlayerMessage = ReplaceUtil.ColorReplace(format);
-                String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
-                Bukkit.broadcastMessage(chatFormat);
+            String getPlayerMessage = event.getMessage();
+            String format = ChatColor.AQUA + GypChat.instance.getConfig().getString("Format") +ChatColor.BLUE+" >>> "+ ChatColor.GRAY + getPlayerMessage;
+            if (player.isOp()){
+                format =  ChatColor.RED+"[管理员]"+format;
+                //Bukkit.broadcastMessage((String) opformat);
             }
+            String setPlayerMessage = ReplaceUtil.ColorReplace(format);
+            String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
+            event.setFormat(chatFormat);
         }else if (!GypChat.instance.getConfig().getBoolean("chatColor")){
             /*
             没有启动颜色
              */
-            //Player player = event.getPlayer();
             String getPlayerMessage = event.getMessage();
-            event.setCancelled(true);
             String format = GypChat.instance.getConfig().getString("Format") +" >>> "+ getPlayerMessage;
+            String setPlayerMessage = ReplaceUtil.ColorReplace(format);
+            String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
             if (player.isOp()){
                 format = ChatColor.RED+"[管理员]" +format;
                 //Bukkit.broadcastMessage((String) opformat);
             }
-            String setPlayerMessage = ReplaceUtil.ColorReplace(format);
-            if (GypChat.instance.getConfig().getBoolean("replaceEnable")) {
-                String chatFormat = PlaceholderAPI.setPlaceholders(player, setPlayerMessage);
-                 Bukkit.broadcastMessage(chatFormat);
-            }
+            event.setFormat(chatFormat);
 
         }
 

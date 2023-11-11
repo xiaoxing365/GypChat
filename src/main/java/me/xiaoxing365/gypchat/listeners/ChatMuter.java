@@ -23,13 +23,13 @@ public class ChatMuter implements Listener {
         if (Config.config.contains("mutedPlayers")) {
             for (String uuidString : Config.config.getStringList("mutedPlayers")) {
                 UUID uuid = UUID.fromString(uuidString);
-                MainCmd.mutedPlayers.add(uuid);
+                //MainCmd.mutedPlayers.add(uuid);
             }
         }
     }
 
     public static void saveMutedPlayers() {
-        Config.config.set("mutedPlayers", new HashSet<>(MainCmd.mutedPlayers));
+        //Config.config.set("mutedPlayers", new HashSet<>(MainCmd.mutedPlayers));
         try {
             Config.config.save(dataFile);
         } catch (IOException e) {

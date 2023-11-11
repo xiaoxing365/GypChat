@@ -1,7 +1,7 @@
 package me.xiaoxing365.gypchat.Cmds;
 
 import me.xiaoxing365.gypchat.GypChat;
-import me.xiaoxing365.gypchat.configs.Config;
+//import me.xiaoxing365.gypchat.configs.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -17,7 +17,7 @@ import java.util.UUID;
 
 
 public class MainCmd implements CommandExecutor {
-    public static  Set<UUID> mutedPlayers = new HashSet<>();
+    //public static  Set<UUID> mutedPlayers = new HashSet<>();
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
@@ -29,7 +29,6 @@ public class MainCmd implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW + "---------------------------");
             return true;
         }
-        //List<String> mutelist = DefConfig.getMuteList();
         if (args[0].equalsIgnoreCase("reload")) {
             if (sender.hasPermission("GypChat.reload") & sender.isOp()) {
                 try {
@@ -47,7 +46,6 @@ public class MainCmd implements CommandExecutor {
         if (args[0].equalsIgnoreCase("mute")) {
             if (sender.hasPermission("GypChat.mute") & sender.isOp()) {
                 Player player = Bukkit.getPlayer(args[1]);
-                //mutelist.add(player);
                 if (player == null) {
                     sender.sendMessage("找不到该玩家!");
                     return true;
@@ -55,11 +53,11 @@ public class MainCmd implements CommandExecutor {
                 try {
                     int sec = Integer.parseInt(args[2]);
                     // 添加禁言玩家
-                    mutedPlayers.add(player.getUniqueId());
+                    GypChat.instance.getConfig().getStringList("muteList").add(player.getDisplayName());
                     sender.sendMessage("成功禁言玩家 " + player.getName());
                     //转换秒为Tick
                     GypChat.instance.getServer().getScheduler().runTaskLater(GypChat.instance, () -> {
-                        mutedPlayers.remove(player.getUniqueId());
+                        GypChat.instance.getConfig().getStringList("muteList").remove(player.getDisplayName());
                         sender.sendMessage("成功解除禁言玩家 " + player.getName());
                     }, sec * 20); // 转换为tick
                 } catch (NumberFormatException e) {
@@ -74,8 +72,7 @@ public class MainCmd implements CommandExecutor {
         if (args[0].equalsIgnoreCase("unmute")) {
             if (sender.hasPermission("GypChat.unmute") & sender.isOp()) {
                 Player player = Bukkit.getPlayer(args[1]);
-                //mutelist.remove(player);
-                mutedPlayers.remove(player.getUniqueId());
+                GypChat.instance.getConfig().getStringList("muteList").remove(player.getDisplayName());
                 sender.sendMessage(ChatColor.YELLOW+ "成功解除禁言玩家 " + player.getName());
             } else {
                 sender.sendMessage(ChatColor.RED + "你没有权限运行此命令！");
