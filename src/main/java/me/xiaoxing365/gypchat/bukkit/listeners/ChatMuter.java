@@ -1,6 +1,6 @@
-package me.xiaoxing365.gypchat.listeners;
+package me.xiaoxing365.gypchat.bukkit.listeners;
 
-import me.xiaoxing365.gypchat.GypChat;
+import me.xiaoxing365.gypchat.bukkit.GypChat;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

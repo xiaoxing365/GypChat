@@ -1,4 +1,4 @@
-package me.xiaoxing365.gypchat.utils;
+package me.xiaoxing365.gypchat.bukkit.utils;
 
 import org.bukkit.entity.Player;
 

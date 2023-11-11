@@ -1,4 +1,4 @@
-package me.xiaoxing365.gypchat.Cmds;
+package me.xiaoxing365.gypchat.bukkit.Cmds;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

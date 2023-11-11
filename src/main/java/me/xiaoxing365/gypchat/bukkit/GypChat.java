@@ -1,9 +1,9 @@
-package me.xiaoxing365.gypchat;
+package me.xiaoxing365.gypchat.bukkit;
 
-import me.xiaoxing365.gypchat.Cmds.MainCmd;
-import me.xiaoxing365.gypchat.Cmds.MainTab;
-import me.xiaoxing365.gypchat.listeners.ChatListener;
-import me.xiaoxing365.gypchat.listeners.ChatMuter;
+import me.xiaoxing365.gypchat.bukkit.Cmds.MainCmd;
+import me.xiaoxing365.gypchat.bukkit.Cmds.MainTab;
+import me.xiaoxing365.gypchat.bukkit.listeners.ChatListener;
+import me.xiaoxing365.gypchat.bukkit.listeners.ChatMuter;
 import net.Zrips.CMILib.Messages.CMIMessages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

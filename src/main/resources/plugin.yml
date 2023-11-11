@@ -1,6 +1,6 @@
 name: GypChat
 version: '${project.version}'
-main: me.xiaoxing365.gypchat.GypChat
+main: me.xiaoxing365.gypchat.bukkit.GypChat
 depend: [PlaceholderAPI]
 authors: [xiaoxing365]
 commands:

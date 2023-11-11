@@ -1,6 +1,6 @@
-package me.xiaoxing365.gypchat.Cmds;
+package me.xiaoxing365.gypchat.bukkit.Cmds;
 
-import me.xiaoxing365.gypchat.GypChat;
+import me.xiaoxing365.gypchat.bukkit.GypChat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

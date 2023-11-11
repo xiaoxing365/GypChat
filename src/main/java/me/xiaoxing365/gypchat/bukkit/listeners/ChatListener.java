@@ -1,8 +1,8 @@
-package me.xiaoxing365.gypchat.listeners;
+package me.xiaoxing365.gypchat.bukkit.listeners;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.xiaoxing365.gypchat.GypChat;
-import me.xiaoxing365.gypchat.utils.ReplaceUtil;
+import me.xiaoxing365.gypchat.bukkit.GypChat;
+import me.xiaoxing365.gypchat.bukkit.utils.ReplaceUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
