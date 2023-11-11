@@ -53,7 +53,7 @@ public class MainCmd implements CommandExecutor {
                     GypChat.instance.getServer().getScheduler().runTaskLater(GypChat.instance, () -> {
                         GypChat.instance.getConfig().getStringList("muteList").remove(player.getDisplayName());
                         sender.sendMessage("成功解除禁言玩家 " + player.getName());
-                    }, sec * 20); // 转换为tick
+                    }, sec * 20L); // 转换为tick
                 } catch (NumberFormatException e) {
                     sender.sendMessage(ChatColor.RED+"禁言时长必须是一个整数!");
                     return true;
