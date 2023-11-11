@@ -2,7 +2,6 @@ package me.xiaoxing365.gypchat;
 
 import me.xiaoxing365.gypchat.Cmds.MainCmd;
 import me.xiaoxing365.gypchat.Cmds.MainTab;
-//import me.xiaoxing365.gypchat.configs.Config;
 import me.xiaoxing365.gypchat.listeners.ChatListener;
 import me.xiaoxing365.gypchat.listeners.ChatMuter;
 import net.Zrips.CMILib.Messages.CMIMessages;
@@ -10,7 +9,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-//import static me.xiaoxing365.gypchat.Cmds.MainCmd.mutedPlayers;
 
 public final class GypChat extends JavaPlugin {
 
@@ -40,7 +38,6 @@ public final class GypChat extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        ChatMuter.saveMutedPlayers();
         CMIMessages.consoleMessage(ChatColor.BLUE+"插件已卸载，感谢使用！");
     }
 }
