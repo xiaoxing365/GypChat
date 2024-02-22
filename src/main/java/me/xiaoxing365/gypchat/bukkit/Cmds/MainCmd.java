@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 
 public class MainCmd implements CommandExecutor {
-    //public static  Set<UUID> mutedPlayers = new HashSet<>();
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
