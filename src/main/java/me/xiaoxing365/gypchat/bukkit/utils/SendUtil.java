@@ -2,7 +2,7 @@ package me.xiaoxing365.gypchat.bukkit.utils;
 
 import org.bukkit.entity.Player;
 
-public class ReplaceUtil {
+public class SendUtil {
     public static String ColorReplace(String msg){
         return msg.replace("&","§");
     }
